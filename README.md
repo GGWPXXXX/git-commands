@@ -1,5 +1,4 @@
 
-**TODO**: Delete these instructions before you submit your work.
 ## Instructions
 
 1. Read Chapters 2 & 3 of [Pro Git][ProGit]. The chapters are short.
@@ -17,7 +16,6 @@
 5. **Test that your answers are correct!** There is **no excuse** for incorrect answers since you can test your answers by experimentation.      
 6. Verify that your Markdown formatting is correct -- points deducted for bad formatting. VS Code and IntelliJ have markdown previewers. You should also preview it on Github, since Github Markdown is a bit non-standard.
 
-**TODO**: Delete these instructions before you submit your work. Points deducted for each "TODO" in this file.
 
 ## Using Git
 
@@ -155,9 +153,9 @@ test/
 ```
 
 6. **Undo a commit:** Suppose you want to discard some commit(s) and move both HEAD and "master" to an earlier revision (an earlier commit)  Suppose the git commit graph looks like this (`aaaa`, etc, are the commit ids)
-   ```
-   aaaa ---> bbbb ---> cccc ---> dddd [HEAD -> master]
-   ``` 
+```
+aaaa ---> bbbb ---> cccc ---> dddd [HEAD -> master]
+``` 
    The command to reset HEAD and master to the commit id `bbbb`:
 ```
    git reset --hard bbbb
@@ -165,9 +163,9 @@ test/
 
 
 7. **Checkout old code:** Using the above example, the command to replace your working copy with the files from commit with id `aaaa`:
-   ```
-      git checkout aaaa -- .
-   ```
+```
+   git checkout aaaa -- .
+```
     Note:
     - Git won't let you do this if you have uncommitted changes to any "tracked" files.
     - Untracked files are ignored, so after doing this command they will still be in your working copy.  
@@ -204,21 +202,55 @@ test/
 
 ## Branch and Merge
 
-**TODO**: This section is free-form.  Create 4 numbered items for common branch-and-merge tasks you would like to remember and show the git command to do each one. (You are write *more* than 4 if you want.)
 
+
+1. Create new branch named "bugfix/issue-152"
+   ```
+   git branch bugfix/issue-152
+   ```
+2. Switch branch to the new one that we just created.
+   ```
+   git checkout bugfix/issue-152
+   ```
+3. Merge branch after resolve the issues.
+   ```
+   git checkout master
+   git merge bugfix/issue-152
+   ```
+4. Delete old branch after merge.
+   ```
+   git branch -d bugfix/issue-152
+   ```
 
 
 ## Favorites
 
-> TODO: Describe *at least* 1 task that you would like to remember, and the git command(s) to do it.
+### Revert some specific commit.
+Sometimes I accidentally commit something that shouldn't commit or commit it by accident there's a safer way to revert than using `git reset ` is to use `git revert <commit hash>`
+
+
+1. Identify git hash by using 
+```
+git log
+```
+2. Use git revert to revert the changes.
+```
+git revert <commit-hash>
+```
+3. Edit the commit message.
+An editor will open to let type-in commit message to describe what you've reverting and why.
+4. Push reverted changes.
+```
+git push origin/master branch-name
+```
 
 
 
 ---
 ## Resources
 
-> TODO: Add your favorite Git resources (at least 1)
-
+* [ChatGPT](https://chat.openai.com/) An incredible source of information based on AI to answer your question.
+* [Oh My Git!](https://ohmygit.org/) A fun game that has interactive interface tha will show internal structure of github.
 * [Pro Git Online Book][ProGit] Chapters 2 & 3 contain the essentials. Downloadable e-book is available, too. 
 * [Visual Git Reference](https://marklodato.github.io/visual-git-guide) one page with illustrations of git commands.
 * [Markdown Cheatsheet][markdown-cheatsheet] summary of Markdown commands.
